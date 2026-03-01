@@ -5,7 +5,7 @@ import json
 app = Flask(__name__)
 app.secret_key = "secret123"
 
-# ---------------- DATABASE ----------------
+
 def init_db():
     conn = sqlite3.connect("students.db")
     c = conn.cursor()
@@ -37,7 +37,7 @@ def init_db():
 
 init_db()
 
-# ---------------- GRADE ----------------
+
 def calculate_grade(avg):
     if avg >= 90:
         return "A"
@@ -50,7 +50,7 @@ def calculate_grade(avg):
     else:
         return "F"
 
-# ---------------- LOGIN ----------------
+
 @app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -71,13 +71,13 @@ def login():
 
     return render_template("login.html")
 
-# ---------------- LOGOUT ----------------
+
 @app.route("/logout")
 def logout():
     session.pop("admin", None)
     return redirect("/")
 
-# ---------------- DASHBOARD ----------------
+
 @app.route("/dashboard")
 def dashboard():
     if "admin" not in session:
@@ -107,7 +107,7 @@ def dashboard():
                            highest=highest,
                            lowest=lowest)
 
-# ---------------- ADD STUDENT ----------------
+
 @app.route("/add", methods=["GET", "POST"])
 def add_student():
     if "admin" not in session:
@@ -136,7 +136,7 @@ def add_student():
 
     return render_template("add_student.html")
 
-# ---------------- VIEW ----------------
+
 @app.route("/view")
 def view_students():
     if "admin" not in session:
@@ -150,7 +150,7 @@ def view_students():
 
     return render_template("view_students.html", students=students)
 
-# ---------------- DELETE ----------------
+
 @app.route("/delete/<int:id>")
 def delete_student(id):
     conn = sqlite3.connect("students.db")
@@ -160,7 +160,7 @@ def delete_student(id):
     conn.close()
     return redirect("/view")
 
-# ---------------- GRAPH ----------------
+
 @app.route("/stats")
 def stats():
     if "admin" not in session:
@@ -179,7 +179,7 @@ def stats():
         names.append(row[0])
         totals.append(row[1])
 
-    # Convert to JSON safely
+   
     names_json = json.dumps(names)
     totals_json = json.dumps(totals)
 
