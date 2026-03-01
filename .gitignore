@@ -1,0 +1,32 @@
+
+# Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Database
+students.db
+
+# IDE / Editor files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Backup files
+*.bak
+*.swp

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Search Student</h2>
+
+<form method="POST" class="mb-4">
+    <input type="text" name="roll" class="form-control mb-3" placeholder="Enter Roll Number" required>
+    <button class="btn btn-primary">Search</button>
+</form>
+
+{% if result %}
+<div class="card shadow p-3">
+    <h4>{{ result.name }}</h4>
+    <p>Total: {{ result.total }}</p>
+    <p>Average: {{ result.average }}</p>
+    <p>Grade: {{ result.grade }}</p>
+</div>
+{% endif %}
+
+{% if message %}
+<p class="text-danger">{{ message }}</p>
+{% endif %}
+{% endblock %}
